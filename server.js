@@ -2,15 +2,14 @@ require('dotenv').config();
 var express = require('express');
 var app = express(); 
 var cors = require('cors');
-
-// const port = 3001;
+const port = process.env.PORT || 3000
 
 app.use(cors({optionsSuccessStatus: 200}));  // some legacy browsers choke on 204
 
 app.use(express.static('public'));
 
 app.get("/", function (req, res) {
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/views/index.html');
 });
 
 app.get("/api/hello", function (req, res) {
@@ -29,6 +28,6 @@ app.get("/api/whoami", headerParser = (req, res, next) => {
   }
 )
 
-var listener = app.listen(process.env.PORT, function () {
-  console.log('Your app is listening on port ' + listener.address().port);
+var listener = app.listen(port, () => {
+  console.log(`Server running at port `+port);
 });
