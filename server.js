@@ -28,6 +28,5 @@ app.get("/api/whoami", headerParser = (req, res, next) => {
   }
 )
 
-var listener = app.listen(port, () => {
-  console.log(`Server running at port `+port);
-});
+app.listen(process.env.PORT || 3000, 
+	() => console.log("Server is running..."));
